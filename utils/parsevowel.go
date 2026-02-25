@@ -1,12 +1,12 @@
 package utils
 
 func ParseVowel(words []string, index int) ([]string, int) {
-	nextWord := ""
-	if len(words[index:]) > 0 {
-		nextWord = words[index+1]
+	if index == len(words)-1 {
+		return words, index
 	}
 
-	char := lower([]rune(nextWord)[0])
+	nextWord := []rune(words[index+1])
+	char := lower(nextWord[0])
 
 	switch char {
 	case 'a', 'e', 'i', 'o', 'u':

@@ -46,5 +46,7 @@ func ParseInput(data string) []byte {
 
 	fmt.Printf("Lenght: %d, Capacity: %d\n", len(words), cap(words))
 	result := strings.Join(words, " ")
+	quotesIndex := FindPairIndex(result)
+	fmt.Println(quotesIndex)
 	return []byte(result)
 }
