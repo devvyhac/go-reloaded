@@ -1,26 +1,37 @@
 package utils
 
-// func ParseQuote() {
+import (
+	"slices"
+	"strings"
+)
 
-// }
+func ParseQuote(words []string, index, start, end int) ([]string, int, int, int) {
 
-func FindPairIndex(passage string) []int {
-	var foundOne bool
-	var pair []int
-	// var indexes [][]int
-
-	quote := "'"
-
-	for i, item := range passage {
-		if string(item) == quote {
-			if !foundOne {
-				pair = append(pair, i)
-				foundOne = true
-			} else {
-				pair = append(pair, i)
-				foundOne = false
-			}
-		}
+	if start >= 0 {
+		end = index
+		words[start] += strings.Join(words[start+1:end], " ") + "'"
+		words = slices.Delete(words, start+1, end+1)
+		index = start
+		start, end = -1, -1
+	} else {
+		start = index
 	}
-	return pair
+
+	// for i := start + 1; i < len(words); i++ {
+	// 	if words[i] == "'" {
+	// 		end = i
+	// 		break
+	// 	}
+	// }
+
+	return words, index, start, end
+}
+
+func ParseApostrophe(words []string, index int) ([]string, int) {
+	if index > 0 {
+		words[index-1] += words[index]
+		words = slices.Delete(words, index, index+1)
+		index--
+	}
+	return words, index
 }

@@ -19,7 +19,7 @@ func ParsePunctuation(words []string, index int) ([]string, int) {
 	}
 
 	for i, char := range runes {
-		// ,!?
+		// ,!?jhk
 		if !puncs[char] {
 			words[index] = string(runes[i:])
 			words[index-1] += string(runes[:i])

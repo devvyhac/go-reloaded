@@ -7,9 +7,17 @@ import (
 
 func ParseInput(data string) []byte {
 	words := strings.Fields(data)
+	start := -1
+	end := -1
 
 	for i := 0; i < len(words); i++ {
 		switch words[i] {
+
+		case "'":
+			words, i, start, end = ParseQuote(words, i, start, end)
+
+		case "'s", "'t", "'ve", "'re", "'ll":
+			words, i = ParseApostrophe(words, i)
 
 		case "(cap,":
 			words, i = ParseMultiple(words, i, Capitalize)
@@ -46,7 +54,6 @@ func ParseInput(data string) []byte {
 
 	fmt.Printf("Lenght: %d, Capacity: %d\n", len(words), cap(words))
 	result := strings.Join(words, " ")
-	quotesIndex := FindPairIndex(result)
-	fmt.Println(quotesIndex)
+	fmt.Println(result)
 	return []byte(result)
 }
