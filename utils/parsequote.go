@@ -17,13 +17,6 @@ func ParseQuote(words []string, index, start, end int) ([]string, int, int, int)
 		start = index
 	}
 
-	// for i := start + 1; i < len(words); i++ {
-	// 	if words[i] == "'" {
-	// 		end = i
-	// 		break
-	// 	}
-	// }
-
 	return words, index, start, end
 }
 

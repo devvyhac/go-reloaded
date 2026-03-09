@@ -26,7 +26,7 @@ func ParsePunctuation(words []string, index int) ([]string, int) {
 			return words, index
 		}
 	}
-
+	// .,?
 	words[index-1] += words[index]
 	words = slices.Delete(words, index, index+1)
 	index--

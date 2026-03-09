@@ -20,7 +20,7 @@ func ParseInput(data string) []byte {
 			words, i = ParseApostrophe(words, i)
 
 		case "(cap,":
-			words, i = ParseMultiple(words, i, Capitalize)
+			words, i = ParseMultiple(words, i, strings.Title)
 
 		case "(hex)":
 			words, i = ParseNum(words, i, 16)
@@ -29,7 +29,7 @@ func ParseInput(data string) []byte {
 			words, i = ParseNum(words, i, 2)
 
 		case "(cap)":
-			words, i = HandleCase(words, i, Capitalize)
+			words, i = HandleCase(words, i, strings.Title)
 
 		case "(up,":
 			words, i = ParseMultiple(words, i, strings.ToUpper)
